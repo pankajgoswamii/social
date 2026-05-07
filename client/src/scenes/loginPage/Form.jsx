@@ -86,7 +86,7 @@ const Form = () => {
     });
     const loggedIn = await loggedInResponse.json();
     onSubmitProps.resetForm();
-    if (loggedIn) {
+    if (loggedIn.token) {
       dispatch(
         setLogin({
           user: loggedIn.user,
@@ -94,6 +94,8 @@ const Form = () => {
         })
       );
       navigate("/home");
+    } else {
+      alert(loggedIn.msg || "Login failed. Please check your credentials.");
     }
   };
 
